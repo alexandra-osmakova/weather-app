@@ -11,7 +11,8 @@ export class MainWeatherPageComponent implements OnInit {
   isModalOpen: boolean = false;
   userCity: CityWeather;
   addedCities: Array<CityWeather> = [];
-  outputToChild: string = 'add'
+  outputToChild: string = 'add';
+  isError: boolean = false;
 
   constructor(
     private api: ApiCallService) {
@@ -48,9 +49,9 @@ export class MainWeatherPageComponent implements OnInit {
     document.getElementById('modal_overlay_selector').style.display = 'block';
   }
 
-  removeCity(index:number) {
+  removeCity(index: number) {
     this.addedCities.splice(index, 1);
-    if(localStorage.getItem('selectedCities')) {
+    if (localStorage.getItem('selectedCities')) {
       const selectedCities: Array<string> = JSON.parse(localStorage.getItem('selectedCities'))
       selectedCities.splice(index, 1);
       localStorage.setItem('selectedCities', JSON.stringify(selectedCities))
@@ -61,11 +62,22 @@ export class MainWeatherPageComponent implements OnInit {
     this.api.getWeather(city).subscribe(
       (data: any) => {
         this.extractData(data, id)
+      },
+      error => {
+        this.isError = true;
+        this.resetStorage()
       }
     )
   }
 
-  extractData(data, id:string) {
+  resetStorage() {
+    const selectedCities: Array<string> = JSON.parse(localStorage.getItem('selectedCities'));
+    selectedCities.splice(selectedCities.length-1, 1);
+    localStorage.setItem('selectedCities', JSON.stringify(selectedCities))
+  }
+
+  extractData(data, id: string) {
+    this.isError = false;
     let incomeCity: CityWeather = {
       name: '',
       clouds: 0,
@@ -78,7 +90,7 @@ export class MainWeatherPageComponent implements OnInit {
     incomeCity.name = data.name;
     incomeCity.clouds = data.clouds.all;
     incomeCity.humidity = data.main.humidity;
-    if(Math.round(data.main.temp) > 0) {
+    if (Math.round(data.main.temp) > 0) {
       incomeCity.temp = `+${Math.round(data.main.temp)}`;
     }
     else {

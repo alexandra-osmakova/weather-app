@@ -95,6 +95,12 @@ section {
   padding: 1rem 2rem;
   display: flex;
   justify-content: flex-end;
+  align-items: center;
+}
+
+.section_controls span {
+  color: #d0021b;
+  padding-right: 1rem;
 }
 
 .common_btn {

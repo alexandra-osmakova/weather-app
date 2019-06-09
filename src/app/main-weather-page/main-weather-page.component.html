@@ -29,6 +29,7 @@
     </div>
   </div>
   <div class="section_controls">
+    <span *ngIf='isError' class="common_text">Проблема ввода</span>
     <button class="common_btn" (click)='addNewCity()'>Добавить город</button>
   </div>
 </section>
