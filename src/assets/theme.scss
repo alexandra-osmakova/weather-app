@@ -1,0 +1,84 @@
+$sky-blue: #00b4f7;
+$dark-gray: #242424;
+$silver-gray: #c7c7c7;
+$dark-blue: #005e80;
+$white: #ffffff;
+$emerald-green: #01b460;
+
+%heading1 {
+  font-size: 1.875rem;
+  font-weight: 300;
+  color: $dark-gray;
+  letter-spacing: -1.5px;
+  margin: 0;
+}
+
+%heading2 {
+  font-size: 1.75rem;
+  color: $dark-gray;
+  font-weight: normal;
+  letter-spacing: -0.5px;
+  margin: 0;
+}
+
+%heading3 {
+  font-size: 1.625rem;
+  color: $dark-gray;
+  font-weight: 500;
+  letter-spacing: 0;
+  margin: 0;
+}
+
+%subtitleText1 {
+  font-size: 1rem;
+  color: $dark-gray;
+  font-weight: normal;
+  letter-spacing: 0.2px;
+  line-height: 1rem;
+}
+
+%subtitleText2 {
+  font-size: 0.875rem;
+  color: $dark-gray;
+  font-weight: 500;
+  letter-spacing: 0.4px;
+  line-height: 1rem;
+}
+
+h1 {
+  @extend %heading1;
+}
+
+h2 {
+  @extend %heading2;
+}
+
+h3 {
+  @extend %heading3;
+}
+
+
+.common_text {
+  @extend %subtitleText1;
+}
+
+.marked_common_text {
+  @extend %subtitleText2;
+}
+
+.common_btn {
+  background-color: transparent;
+  text-transform: uppercase;
+  padding: 1rem 2rem;
+  border: 0.25rem solid $white;
+  @extend %subtitleText1;
+  font-weight: bold;
+  color:  $white;
+  transition: all 0.5s ease;
+}
+
+.common_btn:hover {
+  background-color: $white;
+  color: $sky-blue;
+}
+

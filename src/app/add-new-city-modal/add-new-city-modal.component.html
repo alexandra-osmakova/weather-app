@@ -1,0 +1,17 @@
+<section>
+  <div class="section_header">
+    <button (click)="closeModal()">
+      <svg viewBox="0 0 1000 1000">
+        <path fill="#00b4f7" d="m10 939.6l929.6-929.6 50.4 50.4-929.6 929.6-50.4-50.4z" />
+        <path fill="#00b4f7" d="M939.6,990L10,60.4L60.4,10L990,939.6L939.6,990z" />
+      </svg>
+    </button>
+  </div>
+  <div class="section_content" [formGroup]="selectedCityForm">
+    <h3>Введите название города</h3>
+    <input class="common_text" placeholder="ex. Kazan" type="text" formControlName='selectedCity'/>
+    <div class="section_content__control">
+      <button [disabled]="!selectedCityForm.valid" class="common_btn" (click)='sendMessage()'>Добавить</button>
+    </div>
+  </div>
+</section>

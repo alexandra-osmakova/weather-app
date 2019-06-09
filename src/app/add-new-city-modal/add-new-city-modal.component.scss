@@ -1,0 +1,105 @@
+@import "../../assets/theme.scss";
+
+section {
+  position: fixed;
+  background-color: $white;
+  top: 10%;
+  left: 10%;
+  right: 10%;
+  bottom: 10%;
+  box-shadow: 0 2px 8px 1px rgba(14, 110, 145, 0.54);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.section_header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  display: flex;
+  justify-content: flex-end;
+
+  svg {
+    width: 2rem;
+  }
+}
+
+.section_content {
+  width: 80%;
+  padding: 2rem;
+
+  h3 {
+    text-align: center;
+    padding-bottom: 2rem;
+  }
+
+  input {
+    padding: 1rem;
+    border: 1px solid $silver-gray;
+    box-shadow: 0 0 4px 0 rgba(179, 179, 179, 0.54);
+    width: 100%;
+  }
+
+  input::placeholder {
+    @extend %subtitleText1;
+  }
+
+  .section_content__control {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+  }
+
+  .common_btn {
+    margin-top: 1rem;
+    border-color: $sky-blue;
+    color: $sky-blue;
+  }
+
+  .common_btn:hover {
+    border-color: $sky-blue;
+    color: $sky-blue;
+    box-shadow: 0 2px 8px 1px rgba(14, 110, 145, 0.54);
+  }
+
+  .common_btn:disabled {
+    box-shadow: none;
+    opacity: 0.5;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 375px)  {
+  section {
+    top: 20%;
+    bottom: 20%;
+
+    .common_btn {
+      width: 100%;
+    }
+  }
+}
+
+@media screen and (min-width: 376px) and (max-width: 425px) {
+  section {
+    top: 20%;
+    bottom: 20%;
+
+    .common_btn {
+      width: 100%;
+    }
+  }
+}
+
+@media screen and (min-width: 426px) and (max-width: 768px)  {
+  section {
+    top: 20%;
+    bottom: 20%;
+
+    .common_btn {
+      width: 100%;
+    }
+  }
+}

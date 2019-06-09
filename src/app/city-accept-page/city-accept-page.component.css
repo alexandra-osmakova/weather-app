@@ -1,0 +1,151 @@
+h1 {
+  font-size: 1.875rem;
+  font-weight: 300;
+  color: #242424;
+  letter-spacing: -1.5px;
+  margin: 0;
+}
+
+h2 {
+  font-size: 1.75rem;
+  color: #242424;
+  font-weight: normal;
+  letter-spacing: -0.5px;
+  margin: 0;
+}
+
+h3 {
+  font-size: 1.625rem;
+  color: #242424;
+  font-weight: 500;
+  letter-spacing: 0;
+  margin: 0;
+}
+
+.common_text, .common_btn {
+  font-size: 1rem;
+  color: #242424;
+  font-weight: normal;
+  letter-spacing: 0.2px;
+  line-height: 1rem;
+}
+
+.marked_common_text {
+  font-size: 0.875rem;
+  color: #242424;
+  font-weight: 500;
+  letter-spacing: 0.4px;
+  line-height: 1rem;
+}
+
+.common_btn {
+  background-color: transparent;
+  text-transform: uppercase;
+  padding: 1rem 2rem;
+  border: 0.25rem solid #ffffff;
+  font-weight: bold;
+  color: #ffffff;
+  transition: all 0.5s ease;
+}
+
+.common_btn:hover {
+  background-color: #ffffff;
+  color: #00b4f7;
+}
+
+section {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(225deg, rgba(1, 180, 96, 0.7), rgba(0, 94, 128, 0.7), rgba(0, 180, 247, 0.7), rgba(1, 180, 96, 0.7));
+  background-size: 500% 500%;
+  -webkit-animation: gradient-animation 10s ease infinite;
+  -moz-animation: gradient-animation 10s ease infinite;
+  animation: gradient-animation 10s ease infinite;
+}
+
+.section_content {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  min-width: 25%;
+}
+
+.section_content h2, .section_content span {
+  color: #ffffff;
+  padding-bottom: 1.375rem;
+}
+
+.section_content .common_text {
+  text-transform: uppercase;
+  min-height: 1rem;
+}
+
+.section_content .section_content__controls {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@-webkit-keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@-moz-keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 375px) {
+  .section_content {
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 376px) and (max-width: 425px) {
+  .section_content {
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 426px) and (max-width: 768px) {
+  .section_content {
+    width: 45%;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .section_content {
+    width: 28%;
+  }
+}

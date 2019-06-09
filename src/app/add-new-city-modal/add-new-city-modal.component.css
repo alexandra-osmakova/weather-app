@@ -1,0 +1,151 @@
+h1 {
+  font-size: 1.875rem;
+  font-weight: 300;
+  color: #242424;
+  letter-spacing: -1.5px;
+  margin: 0;
+}
+
+h2 {
+  font-size: 1.75rem;
+  color: #242424;
+  font-weight: normal;
+  letter-spacing: -0.5px;
+  margin: 0;
+}
+
+h3 {
+  font-size: 1.625rem;
+  color: #242424;
+  font-weight: 500;
+  letter-spacing: 0;
+  margin: 0;
+}
+
+.common_text, .common_btn, .section_content input::placeholder {
+  font-size: 1rem;
+  color: #242424;
+  font-weight: normal;
+  letter-spacing: 0.2px;
+  line-height: 1rem;
+}
+
+.marked_common_text {
+  font-size: 0.875rem;
+  color: #242424;
+  font-weight: 500;
+  letter-spacing: 0.4px;
+  line-height: 1rem;
+}
+
+.common_btn {
+  background-color: transparent;
+  text-transform: uppercase;
+  padding: 1rem 2rem;
+  border: 0.25rem solid #ffffff;
+  font-weight: bold;
+  color: #ffffff;
+  transition: all 0.5s ease;
+}
+
+.common_btn:hover {
+  background-color: #ffffff;
+  color: #00b4f7;
+}
+
+section {
+  position: fixed;
+  background-color: #ffffff;
+  top: 10%;
+  left: 10%;
+  right: 10%;
+  bottom: 10%;
+  box-shadow: 0 2px 8px 1px rgba(14, 110, 145, 0.54);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.section_header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.section_header svg {
+  width: 2rem;
+}
+
+.section_content {
+  width: 80%;
+  padding: 2rem;
+}
+
+.section_content h3 {
+  text-align: center;
+  padding-bottom: 2rem;
+}
+
+.section_content input {
+  padding: 1rem;
+  border: 1px solid #c7c7c7;
+  box-shadow: 0 0 4px 0 rgba(179, 179, 179, 0.54);
+  width: 100%;
+}
+
+.section_content .section_content__control {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.section_content .common_btn {
+  margin-top: 1rem;
+  border-color: #00b4f7;
+  color: #00b4f7;
+}
+
+.section_content .common_btn:hover {
+  border-color: #00b4f7;
+  color: #00b4f7;
+  box-shadow: 0 2px 8px 1px rgba(14, 110, 145, 0.54);
+}
+
+.section_content .common_btn:disabled {
+  box-shadow: none;
+  opacity: 0.5;
+}
+
+@media screen and (min-width: 320px) and (max-width: 375px) {
+  section {
+    top: 20%;
+    bottom: 20%;
+  }
+  section .common_btn {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 376px) and (max-width: 425px) {
+  section {
+    top: 20%;
+    bottom: 20%;
+  }
+  section .common_btn {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 426px) and (max-width: 768px) {
+  section {
+    top: 20%;
+    bottom: 20%;
+  }
+  section .common_btn {
+    width: 100%;
+  }
+}

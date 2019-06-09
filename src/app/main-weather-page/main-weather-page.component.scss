@@ -1,0 +1,267 @@
+@import "../../assets/theme.scss";
+
+section {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.section_header {
+  width: 100%;
+  padding: 1rem 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  background-color: $sky-blue;
+
+  h3 {
+    width: 40%;
+  }
+
+  .info_holder {
+    width: 60%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  h3,
+  span {
+    color: $white;
+  }
+
+  span {
+    width: 20%;
+  }
+
+}
+
+.section_controls {
+    width: 100%;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.common_btn {
+  border-color: $sky-blue;
+  color: $sky-blue;
+}
+
+.common_btn:hover {
+  border-color: $sky-blue;
+  color: $sky-blue;
+  box-shadow: 0 2px 8px 1px rgba(14, 110, 145, 0.54);
+}
+
+.modal_overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #666666;
+  opacity: 0.4;
+  display: none;
+}
+
+.section_content {
+  width: 100%;
+
+  .section_content__item {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid $sky-blue;
+
+    h3 {
+      width: 40%;
+      color: $sky-blue;
+    }
+
+    span {
+      color: $dark-gray;
+      width: 20%;
+    }
+
+    .info_holder {
+      width: 60%;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-around;
+    }
+
+    button {
+      position: absolute;
+      right: 1rem;
+      top: 1.5rem;
+
+      svg {
+        width: 1rem;
+      }
+    }
+  }
+
+  .section_content__item:last-of-type {
+    margin-bottom: 0;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 375px) {
+  .section_header {
+    .info_holder {
+      padding-top: 1rem;
+      justify-content: space-between;
+    }
+    .info_holder, h3 {
+      width: 100%;
+    }
+
+    span {
+      width: 40%;
+      padding-bottom: 1rem;
+    }
+  }
+
+  .section_content {
+    .section_content__item {
+      .info_holder, h3 {
+        width: 100%;
+      };
+  
+      .info_holder {
+        padding-top: 1rem;
+        justify-content: space-between;
+      }
+  
+      span {
+        width: 40%;
+        padding-bottom: 1rem;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 376px) and (max-width: 425px) {
+  .section_header {
+    .info_holder {
+      padding-top: 1rem;
+      justify-content: space-between;
+    }
+    .info_holder, h3 {
+      width: 100%;
+    }
+
+    span {
+      width: 40%;
+      padding-bottom: 1rem;
+    }
+  }
+
+  .section_content {
+    .section_content__item {
+      .info_holder, h3 {
+        width: 100%;
+      };
+  
+      .info_holder {
+        padding-top: 1rem;
+        justify-content: space-between;
+      }
+  
+      span {
+        width: 40%;
+        padding-bottom: 1rem;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 426px) and (max-width: 768px) {
+  .section_header {
+    .info_holder {
+      padding-top: 1rem;
+      justify-content: space-between;
+    }
+    .info_holder, h3 {
+      width: 100%;
+    }
+
+    span {
+      width: 40%;
+      padding-bottom: 1rem;
+    }
+  }
+
+  .section_content {
+    .section_content__item {
+      .info_holder, h3 {
+        width: 100%;
+      };
+  
+      .info_holder {
+        padding-top: 1rem;
+        justify-content: space-between;
+      }
+  
+      span {
+        width: 40%;
+        padding-bottom: 1rem;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .section_header {
+    .info_holder, h3 {
+      width: 100%;
+    }
+
+    .info_holder {
+      padding-top: 1rem;
+    }
+  }
+
+  .section_content {
+    .section_content__item {
+      .info_holder, h3 {
+        width: 100%;
+      };
+    }
+    .info_holder {
+      padding-top: 1rem;
+    }
+  }
+}
+
+@media screen and (min-width: 1025px) and (max-width: 1200px) {
+  .section_header {
+    h3 {
+      width: 30%;
+    }
+
+    .info_holder {
+      width: 70%;
+    }
+  }
+
+  .section_content {
+    .section_content__item {
+      h3 {
+        width: 30%;
+      }
+  
+      .info_holder {
+        width: 70%;
+      }
+    }
+  }
+}

@@ -1,0 +1,37 @@
+<section id="main_weather_page">
+  <div id="modal_overlay_selector" class="modal_overlay"></div>
+  <div class="section_header" *ngIf="userCity">
+    <h3>{{userCity.name}}</h3>
+    <div class="info_holder">
+      <span class="common_text">Температура: {{userCity.temp}}</span>
+      <span class="common_text">Влажность: {{userCity.humidity}}%</span>
+      <span class="common_text">Облачность: {{userCity.clouds}}%</span>
+      <span class="common_text">Ветер: {{userCity.wind}}м/с</span>
+      <span class="common_text">{{userCity.description | titlecase}}</span>
+    </div>
+  </div>
+  <div class="section_content" *ngIf="addedCities">
+    <div class="section_content__item" *ngFor="let item of addedCities; let i = index">
+      <h3>{{item.name}}</h3>
+      <div class="info_holder">
+        <span class="common_text">Температура: {{item.temp}}</span>
+        <span class="common_text">Влажность: {{item.humidity}}%</span>
+        <span class="common_text">Облачность: {{item.clouds}}%</span>
+        <span class="common_text">Ветер: {{item.wind}}м/с</span>
+        <span class="common_text">{{item.description | titlecase}}</span>
+      </div>
+      <button (click)="removeCity(i)">
+        <svg viewBox="0 0 1000 1000">
+          <path fill="#d0021b" d="m10 939.6l929.6-929.6 50.4 50.4-929.6 929.6-50.4-50.4z" />
+          <path fill="#d0021b" d="M939.6,990L10,60.4L60.4,10L990,939.6L939.6,990z" />
+        </svg>
+      </button>
+    </div>
+  </div>
+  <div class="section_controls">
+    <button class="common_btn" (click)='addNewCity()'>Добавить город</button>
+  </div>
+</section>
+<app-add-new-city-modal *ngIf='isModalOpen' (modalEvent)="receiveMessage($event)"
+  (sendSelectedCity)="receiveSelectedCity($event)"
+  [currentParentInput]="outputToChild"></app-add-new-city-modal>

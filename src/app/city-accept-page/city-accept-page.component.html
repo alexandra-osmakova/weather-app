@@ -1,0 +1,13 @@
+<section>
+  <div class="section_content">
+    <h2>Это ваш город?</h2>
+    <span class="common_text">{{userCity}}</span>
+    <div class="section_content__controls">
+      <button class="common_btn" (click)="goToWeatherPage()">Да</button>
+      <button class="common_btn" (click)="addDefaultCity()">Нет</button>
+    </div>
+  </div>
+</section>
+<app-add-new-city-modal *ngIf='isModalOpen' 
+(modalEvent)="receiveMessage($event)"
+[currentParentInput]="outputToChild"></app-add-new-city-modal>
