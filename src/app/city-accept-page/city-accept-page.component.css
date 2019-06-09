@@ -80,7 +80,7 @@ section {
 
 .section_content .common_text {
   text-transform: uppercase;
-  min-height: 1rem;
+  height: 1rem;
 }
 
 .section_content .section_content__controls {

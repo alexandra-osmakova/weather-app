@@ -24,7 +24,6 @@ export class AddNewCityModalComponent implements OnInit {
 
   sendMessage() {
     const selectedCity = this.selectedCityForm.controls.selectedCity.value;
-    console.log(selectedCity)
     if (this.currentParentInput === 'add') {
       if (localStorage.getItem('selectedCities')) {
         const userSelection = JSON.parse(localStorage.getItem('selectedCities'));
