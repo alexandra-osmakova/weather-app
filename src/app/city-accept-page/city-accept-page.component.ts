@@ -25,7 +25,7 @@ export class CityAcceptPageComponent implements OnInit {
         if(data.city[data.city.length-1] === "’") {
           data.city = data.city.slice(0, -1)
         }
-        localStorage.setItem('usersCity', data.city);
+        localStorage.setItem('usersCity', JSON.stringify([data.city]));
         this.userCity = data.city;
       })
   }

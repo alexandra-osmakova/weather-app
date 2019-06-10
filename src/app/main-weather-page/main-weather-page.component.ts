@@ -20,19 +20,24 @@ export class MainWeatherPageComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    if (localStorage.getItem('usersCity')) {
-      this.getCurrentWeather(localStorage.getItem('usersCity'), 'userCity');
-
-      if (localStorage.getItem('selectedCities')) {
-        const storageCities = JSON.parse(localStorage.getItem('selectedCities'));
-        this.refreshData(storageCities).subscribe(
-          (data: Array<IncomeData>) => {
-            for (let i = 0; i < data.length; i++) {
-              this.extractData(data[i], 'addedCities')
-            }
+    const usersCity = localStorage.getItem('usersCity');
+    const selectedCities = localStorage.getItem('selectedCities');
+    if (usersCity) {
+      this.refreshData(JSON.parse(usersCity)).subscribe(
+        (data: Array<IncomeData>) => {
+          this.extractData(data[0], 'userCity');
+          if (selectedCities) {
+            const storageCities = JSON.parse(selectedCities);
+            this.refreshData(storageCities).subscribe(
+              (data: Array<IncomeData>) => {
+                for (let i = 0; i < data.length; i++) {
+                  this.extractData(data[i], 'addedCities');
+                }
+              }
+            )
           }
-        )
-      }
+        }
+      )
     }
   }
 
@@ -78,9 +83,7 @@ export class MainWeatherPageComponent implements OnInit {
   }
 
   refreshData(cities: Array<string>): Observable<any[]> {
-    const el = cities.map(el => {
-      return this.api.getWeather(el)
-    })
+    const el = cities.map(el => this.api.getWeather(el));
     return forkJoin(el)
   }
 
