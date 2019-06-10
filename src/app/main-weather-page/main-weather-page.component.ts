@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiCallService } from '../service/api-call.service';
 import { CityWeather, IncomeData } from '../interface';
-import { elementClassProp } from '../../../node_modules/@angular/core/src/render3';
+import { Observable } from 'rxjs';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-main-weather-page',
@@ -24,9 +25,13 @@ export class MainWeatherPageComponent implements OnInit {
 
       if (localStorage.getItem('selectedCities')) {
         const storageCities = JSON.parse(localStorage.getItem('selectedCities'));
-        for (let i = 0; i < storageCities.length; i++) {
-          this.getCurrentWeather(storageCities[i], 'addedCities')
-        }
+        this.refreshData(storageCities).subscribe(
+          (data: Array<IncomeData>) => {
+            for (let i = 0; i < data.length; i++) {
+              this.extractData(data[i], 'addedCities')
+            }
+          }
+        )
       }
     }
   }
@@ -48,7 +53,7 @@ export class MainWeatherPageComponent implements OnInit {
   removeCity(name: string) {
     const selectedCities = this.addedCities.reduce((acc, el, index) => {
       if (el.name !== name) {
-        if(el.default !== true) {
+        if (el.default !== true) {
           acc.push(el.name);
         }
       } else {
@@ -70,6 +75,13 @@ export class MainWeatherPageComponent implements OnInit {
         this.resetStorage()
       }
     )
+  }
+
+  refreshData(cities: Array<string>): Observable<any[]> {
+    const el = cities.map(el => {
+      return this.api.getWeather(el)
+    })
+    return forkJoin(el)
   }
 
   resetStorage() {
