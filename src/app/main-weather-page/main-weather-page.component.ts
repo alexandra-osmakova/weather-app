@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiCallService } from '../service/api-call.service';
-import { CityWeather } from '../interface';
+import { CityWeather, IncomeData } from '../interface';
+import { elementClassProp } from '../../../node_modules/@angular/core/src/render3';
 
 @Component({
   selector: 'app-main-weather-page',
@@ -9,30 +10,25 @@ import { CityWeather } from '../interface';
 })
 export class MainWeatherPageComponent implements OnInit {
   isModalOpen: boolean = false;
-  userCity: CityWeather;
   addedCities: Array<CityWeather> = [];
   outputToChild: string = 'add';
   isError: boolean = false;
 
   constructor(
-    private api: ApiCallService) {
-  }
+    private api: ApiCallService
+  ) { }
 
   ngOnInit() {
-    if (localStorage.getItem('usersCity') && localStorage.getItem('selectedCities')) {
+    if (localStorage.getItem('usersCity')) {
       this.getCurrentWeather(localStorage.getItem('usersCity'), 'userCity');
-      const storageCities = JSON.parse(localStorage.getItem('selectedCities'))
-      for (let i = 0; i < storageCities.length; i++) {
-        this.getCurrentWeather(storageCities[i], 'addedCities')
+
+      if (localStorage.getItem('selectedCities')) {
+        const storageCities = JSON.parse(localStorage.getItem('selectedCities'));
+        for (let i = 0; i < storageCities.length; i++) {
+          this.getCurrentWeather(storageCities[i], 'addedCities')
+        }
       }
     }
-    else if (localStorage.getItem('usersCity')) {
-      this.getCurrentWeather(localStorage.getItem('usersCity'), 'userCity');
-    }
-    else {
-      this.getCurrentWeather(localStorage.getItem('usersCity'), 'userCity')
-    }
-
   }
 
   receiveSelectedCity($event) {
@@ -49,18 +45,24 @@ export class MainWeatherPageComponent implements OnInit {
     document.getElementById('modal_overlay_selector').style.display = 'block';
   }
 
-  removeCity(index: number) {
-    this.addedCities.splice(index, 1);
-    if (localStorage.getItem('selectedCities')) {
-      const selectedCities: Array<string> = JSON.parse(localStorage.getItem('selectedCities'))
-      selectedCities.splice(index, 1);
-      localStorage.setItem('selectedCities', JSON.stringify(selectedCities))
-    }
+  removeCity(name: string) {
+    const selectedCities = this.addedCities.reduce((acc, el, index) => {
+      if (el.name !== name) {
+        if(el.default !== true) {
+          acc.push(el.name);
+        }
+      } else {
+        this.addedCities.splice(index, 1)
+      }
+
+      return acc;
+    }, [])
+    localStorage.setItem('selectedCities', JSON.stringify(selectedCities))
   }
 
   getCurrentWeather(city: string, id: string) {
     this.api.getWeather(city).subscribe(
-      (data: any) => {
+      (data: IncomeData) => {
         this.extractData(data, id)
       },
       error => {
@@ -72,39 +74,23 @@ export class MainWeatherPageComponent implements OnInit {
 
   resetStorage() {
     const selectedCities: Array<string> = JSON.parse(localStorage.getItem('selectedCities'));
-    selectedCities.splice(selectedCities.length-1, 1);
+    selectedCities.splice(selectedCities.length - 1, 1);
     localStorage.setItem('selectedCities', JSON.stringify(selectedCities))
   }
 
-  extractData(data, id: string) {
+  extractData(data: IncomeData, id: string) {
     this.isError = false;
-    let incomeCity: CityWeather = {
-      name: '',
-      clouds: 0,
-      humidity: 0,
-      temp: '',
-      description: '',
-      wind: 0
-    }
+    const incomeCity: CityWeather = {
+      name: data.name,
+      clouds: data.clouds.all,
+      humidity: data.main.humidity,
+      temp: `${data.main.temp > 0 ? '+' : ''}${Math.round(data.main.temp)}`,
+      description: data.weather[0].description,
+      wind: data.wind.speed,
+      default: id === 'userCity' ? true : false
+    };
 
-    incomeCity.name = data.name;
-    incomeCity.clouds = data.clouds.all;
-    incomeCity.humidity = data.main.humidity;
-    if (Math.round(data.main.temp) > 0) {
-      incomeCity.temp = `+${Math.round(data.main.temp)}`;
-    }
-    else {
-      incomeCity.temp = `${Math.round(data.main.temp)}`;
-    }
-    incomeCity.description = data.weather[0].description;
-    incomeCity.wind = data.wind.speed;
-
-    if (id === 'userCity') {
-      this.userCity = { ...incomeCity }
-    }
-    else if (id === 'addedCities') {
-      this.addedCities.push(incomeCity);
-    }
+    this.addedCities.push(incomeCity);
   }
 
 }

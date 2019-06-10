@@ -8,9 +8,9 @@ import { ApiCallService } from '../service/api-call.service';
   styleUrls: ['./city-accept-page.component.scss']
 })
 export class CityAcceptPageComponent implements OnInit {
-  userCity: string;
   isModalOpen: boolean = false;
-  outputToChild: string = 'default'
+  outputToChild: string = 'default';
+  userCity: string;
 
   constructor(private router: Router,
     private api: ApiCallService) { }
@@ -25,8 +25,8 @@ export class CityAcceptPageComponent implements OnInit {
         if(data.city[data.city.length-1] === "’") {
           data.city = data.city.slice(0, -1)
         }
+        localStorage.setItem('usersCity', data.city);
         this.userCity = data.city;
-        localStorage.setItem('usersCity', data.city)
       })
   }
 

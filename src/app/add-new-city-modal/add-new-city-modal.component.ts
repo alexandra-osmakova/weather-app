@@ -15,8 +15,10 @@ export class AddNewCityModalComponent implements OnInit {
   @Output() sendSelectedCity = new EventEmitter<string>();
   @Input() currentParentInput: string;
 
-  constructor(private router: Router,
-    private fb: FormBuilder) { }
+  constructor(
+    private router: Router,
+    private fb: FormBuilder
+  ) { }
 
   ngOnInit() {
     this.initForm();
@@ -25,16 +27,11 @@ export class AddNewCityModalComponent implements OnInit {
   sendMessage() {
     const selectedCity = this.selectedCityForm.controls.selectedCity.value;
     if (this.currentParentInput === 'add') {
-      if (localStorage.getItem('selectedCities')) {
-        const userSelection = JSON.parse(localStorage.getItem('selectedCities'));
-        userSelection.push(selectedCity);
-        localStorage.setItem('selectedCities', JSON.stringify(userSelection));
-      }
-      else {
-        const userSelection = [];
-        userSelection.push(selectedCity);
-        localStorage.setItem('selectedCities', JSON.stringify(userSelection));
-      }
+      const selectedCities = localStorage.getItem('selectedCities');
+      const userSelection = selectedCities ? JSON.parse(localStorage.getItem('selectedCities')) : [];
+      userSelection.push(selectedCity);
+      localStorage.setItem('selectedCities', JSON.stringify(userSelection));
+
       this.sendSelectedCity.emit(selectedCity);
       this.closeModal();
     } else if (this.currentParentInput === 'default') {
@@ -45,8 +42,9 @@ export class AddNewCityModalComponent implements OnInit {
 
   closeModal() {
     this.modalEvent.emit(this.isModalOpen)
-    if (document.getElementById('modal_overlay_selector')) {
-      document.getElementById('modal_overlay_selector').style.display = 'none';
+    const modal = document.getElementById('modal_overlay_selector');
+    if (modal) {
+      modal.style.display = 'none';
     }
   }
 
